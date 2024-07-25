@@ -26,9 +26,14 @@ public class InvalidEmail {
     @Test
     public void wrongTypeEmail(){
 
+        // check landing url
+        String expectedUrl="https://demoqa.com/text-box";
+        String actualUrl  = driver.getCurrentUrl();
 
-        //missing the @ sign from the email address completing field  stops the submitting of the other informations too
-        //the outputox is not visible
+
+        //missing the @ sign from the email address completing field  stops the submitting of other informations too;
+        //the output field is not visible
+
 
         WebElement inputName= driver.findElement(By.id("userName"));
         inputName.sendKeys("Ion Popescu");
@@ -50,8 +55,6 @@ public class InvalidEmail {
 
         WebElement outputField= driver.findElement(By.id("output"));
         Assert.assertFalse(outputField.isDisplayed());
-
-
 
     }
 }

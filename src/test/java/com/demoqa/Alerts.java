@@ -5,10 +5,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class Alerts {
 
@@ -23,13 +28,15 @@ public class Alerts {
         driver.manage().window().maximize();
     }
 
-    @Test
+    @Test(priority = 1)
     public void alertButton() throws InterruptedException {
 
         // check landing page
         String expectedUrl = "https://demoqa.com/alerts";
         String actualUrl = driver.getCurrentUrl();
+        Assert.assertEquals(actualUrl,expectedUrl);
 
+        Thread.sleep(2000);
 
         WebElement clickButton = driver.findElement(By.id("alertButton"));
         clickButton.click();
@@ -39,7 +46,7 @@ public class Alerts {
         Alert message = driver.switchTo().alert();
         String expectedAlertMessage = "You clicked a button";
         String actualAlertMessage = driver.switchTo().alert().getText(); // capture alert message
-        System.out.println(actualAlertMessage);
+
         Thread.sleep(2000);
 
         Assert.assertEquals(actualAlertMessage, expectedAlertMessage);
@@ -48,13 +55,16 @@ public class Alerts {
 
     }
 
-    @Test
+    @Test(priority = 2)
     public void timerAlertButton() throws InterruptedException {
         WebElement onClickButton = driver.findElement(By.id("timerAlertButton"));
         onClickButton.click();
 
-        Thread.sleep(6000);
+        Wait<WebDriver> wait =new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
+
         Alert timerAlert = driver.switchTo().alert();
+        Thread.sleep(5000);
 
         String expectedTimerMessage = "This alert appeared after 5 seconds";
         String actualTimerMessage = driver.switchTo().alert().getText();
@@ -62,9 +72,10 @@ public class Alerts {
         Assert.assertEquals(actualTimerMessage, expectedTimerMessage);
 
         timerAlert.accept();
+
     }
 
-    @Test
+    @Test(priority = 3)
     public void confirmButton() throws InterruptedException {
         WebElement confirmButton = driver.findElement(By.id("confirmButton"));
         confirmButton.click();
@@ -84,10 +95,9 @@ public class Alerts {
         String actualOkMessage = confirmResult.getText();
         Assert.assertEquals(actualOkMessage, expectedOkMessage);
 
-
     }
 
-    @Test
+    @Test(priority = 4)
     public void cancelConfirmButton() throws InterruptedException {
         WebElement confirmButton = driver.findElement(By.id("confirmButton"));
         confirmButton.click();
@@ -95,18 +105,24 @@ public class Alerts {
 
         Alert cancelAction = driver.switchTo().alert();
         cancelAction.dismiss();
+        Thread.sleep(2000);
 
         WebElement dismissResult = driver.findElement(By.id("confirmResult"));
         String expectedDismissMessage = "You selected Cancel";
         String actualDismissMessage = dismissResult.getText();
 
         Assert.assertEquals(actualDismissMessage, expectedDismissMessage);
+
     }
 
-     @Test
+     @Test(priority = 5)
      public void promptBoxButton() throws InterruptedException {
-        WebElement promptButton= driver.findElement(By.id("promtButton"));
+        WebElement promptButton= driver.findElement(By.xpath("//*[@id=\"promtButton\"]"));
+
+        Wait<WebDriver> wait =new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"promtButton\"]")));
         promptButton.click();
+
         Thread.sleep(2000);
 
         Alert promptBox =driver.switchTo().alert();
@@ -117,22 +133,23 @@ public class Alerts {
 
         Thread.sleep(2000);
 
-        promptBox.sendKeys("Kris");
-        Thread.sleep(4000);
+        promptBox.sendKeys("Kara");
+        Thread.sleep(2000);
         promptBox.accept();
 
         WebElement promptResult= driver.findElement(By.id("promptResult"));
 
-        String expectedEnteredMessage= "You entered Kris";
+        String expectedEnteredMessage= "You entered Kara";
         String actualEnteredMessage  = promptResult.getText();
         Assert.assertEquals(actualEnteredMessage,expectedEnteredMessage);
 
-
-
-
      }
 
-
+     @AfterTest(alwaysRun = true)
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(6000);
+        driver.close();
+     }
 
 }
 

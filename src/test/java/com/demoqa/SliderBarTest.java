@@ -1,17 +1,16 @@
 package com.demoqa;
 
-import com.beust.ah.A;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class SliderTest {
+public class SliderBarTest {
     WebDriver driver;
 
     @BeforeTest(alwaysRun = true)
@@ -25,21 +24,28 @@ public class SliderTest {
 
     @Test
    public void moveTheSlider() throws InterruptedException {
-        WebElement sliderContainer = driver.findElement(By.xpath("//*[@id=\"sliderContainer\"]/div[1]/span"));
-        Actions moveSlider = new Actions(driver);
 
-        //first position 25
+        //check landing page
+        String expectedUrl="https://demoqa.com/slider";
+        String actualUrl  = driver.getCurrentUrl();
+        Assert.assertEquals(actualUrl,expectedUrl);
+
+        // locate the slider element on the webpage
+        WebElement sliderContainer = driver.findElement(By.xpath("//*[@id=\"sliderContainer\"]/div[1]/span"));
+
+        Actions moveSlider = new Actions(driver);
+         //first position "25"
        moveSlider.dragAndDropBy(sliderContainer,-125,0).perform();
 
-
-        // slide back 0
+       // move slider back to 0
        moveSlider.dragAndDropBy(sliderContainer,-250,0).perform();
 
-       // slide to 91
+       // move slider to 91
        moveSlider.dragAndDropBy(sliderContainer,200,0).perform();
 
+       // verify if the sliding was made and stopped at 91
 
-       WebElement sliderValue = driver.findElement(By.id("sliderValue"));
+        WebElement sliderValue = driver.findElement(By.id("sliderValue"));
        Thread.sleep(4000);
         String actualValue=sliderValue.getAttribute("value");
         String expectedValue="91";
@@ -49,6 +55,8 @@ public class SliderTest {
 
        @Test
     public void changeValueManual(){
+
+        // check if we can change manually the slider's value
 
            WebElement sliderValue = driver.findElement(By.id("sliderValue"));
           sliderValue.sendKeys("29");
@@ -61,26 +69,15 @@ public class SliderTest {
 
        }
 
+       @AfterTest
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(3000);
+        driver.close();
+       }
 
-
-
-
-
-
-
-
-
-
-
-        //for (int i=0;i<101;i++){
-
-        //}
     }
 
 
 
 
-
-    //sliderContainer
-    //sliderValue
 
