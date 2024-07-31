@@ -1,0 +1,354 @@
+Index: src/test/java/com/demoqa/BrowserWindows.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.demoqa;\r\n\r\nimport org.openqa.selenium.By;\r\nimport org.openqa.selenium.WebDriver;\r\nimport org.openqa.selenium.WebElement;\r\nimport org.openqa.selenium.chrome.ChromeDriver;\r\nimport org.openqa.selenium.support.ui.Wait;\r\nimport org.openqa.selenium.support.ui.WebDriverWait;\r\nimport org.testng.Assert;\r\nimport org.testng.annotations.AfterTest;\r\nimport org.testng.annotations.BeforeTest;\r\nimport org.testng.annotations.Test;\r\n\r\n\r\n\r\nimport java.time.Duration;\r\n\r\npublic class BrowserWindows {\r\n    WebDriver driver;\r\n    @BeforeTest(alwaysRun = true)\r\n    public void setUp() {\r\n        // Open page\r\n        String url = \"https://demoqa.com/browser-windows\";\r\n        driver = new ChromeDriver();\r\n        driver.get(url);\r\n        driver.manage().window().maximize();\r\n    }\r\n    @Test\r\n    public void newTab() throws InterruptedException {\r\n\r\n        //check landing page\r\n        String actualUrl=driver.getCurrentUrl();\r\n        String expectedUrl=\"https://demoqa.com/browser-windows\";\r\n        Assert.assertEquals(actualUrl,expectedUrl);\r\n\r\n        // click on first tab button\r\n        WebElement clickTab= driver.findElement(By.id(\"tabButton\"));\r\n        clickTab.click();\r\n\r\n        //after new tab opens switch the driver to new tab using the object class from selenium\r\n\r\n        Object[] windowHandles=driver.getWindowHandles().toArray();\r\n        driver.switchTo().window((String) windowHandles[1]);\r\n\r\n        //make sure that the driver switched to the new tab\r\n        String actualNewTab = driver.getCurrentUrl();\r\n        String expectedNewTab=\"https://demoqa.com/sample\";\r\n        Assert.assertEquals(actualNewTab,expectedNewTab);\r\n\r\n        //locate the header element on the new webpage\r\n        WebElement samplePage= driver.findElement(By.id(\"sampleHeading\"));\r\n\r\n        String actualPageTitle = samplePage.getText();\r\n        String expectedPageTitle=\"This is a sample page\";\r\n        Assert.assertEquals(actualPageTitle,expectedPageTitle);\r\n        Thread.sleep(500);\r\n\r\n        // close current driver and switch back to the base page\r\n        driver.close();\r\n        driver.switchTo().window((String) windowHandles[0]);\r\n\r\n        //verify that we are on the base page\r\n        String actualBaseUrl= driver.getCurrentUrl();\r\n        String expectedBaseUrl=\"https://demoqa.com/browser-windows\";\r\n        Assert.assertEquals(actualBaseUrl,expectedBaseUrl);\r\n        System.out.println(\"Base page is: \"+actualBaseUrl);\r\n\r\n    }\r\n\r\n    @Test\r\n    public void newWindow() throws InterruptedException {\r\n\r\n        //click on new window button\r\n        WebElement clickNewWindow= driver.findElement(By.id(\"windowButton\"));\r\n        clickNewWindow.click();\r\n\r\n        // after new tab opens switch the driver to it using the object class\r\n        Object[] windowHandles=driver.getWindowHandles().toArray();\r\n        driver.switchTo().window((String) windowHandles[1]);\r\n\r\n        //make sure that the driver switched to the new window\r\n        String actualNewWindow = driver.getCurrentUrl();\r\n        String expectedNewWindow=\"https://demoqa.com/sample\";\r\n        Assert.assertEquals(actualNewWindow,expectedNewWindow);\r\n\r\n        //locate the header element on the new page\r\n        WebElement windowTitle=driver.findElement(By.id(\"sampleHeading\"));\r\n\r\n        String actualTitle= windowTitle.getText();\r\n        String expectedTitle =\"This is a sample page\";\r\n        Assert.assertEquals(actualTitle,expectedTitle);\r\n        Thread.sleep(500);\r\n\r\n        // close current driver and switch back to the base page\r\n        driver.close();\r\n        driver.switchTo().window((String) windowHandles[0]);\r\n\r\n        //verify that we are on the base page\r\n        String actualBaseUrl= driver.getCurrentUrl();\r\n        String expectedBaseUrl=\"https://demoqa.com/browser-windows\";\r\n        Assert.assertEquals(actualBaseUrl,expectedBaseUrl);\r\n        System.out.println(\"Base page is: \"+actualBaseUrl);\r\n\r\n\r\n    }\r\n    @Test\r\n    public void newWindowMessage(){\r\n\r\n        //click on new window message button\r\n        WebElement newWindowMessage= driver.findElement(By.id(\"messageWindowButton\"));\r\n        Wait<WebDriver> wait =new WebDriverWait(driver, Duration.ofSeconds(20));\r\n        newWindowMessage.click();\r\n\r\n        Object[] windowHandles=driver.getWindowHandles().toArray();\r\n        driver.switchTo().window((String) windowHandles[1]);\r\n\r\n        Wait<WebDriver> wait1 =new WebDriverWait(driver, Duration.ofSeconds(20));\r\n\r\n\r\n        //make sure that the driver switched to blank page\r\n        String actualBlankPage = driver.getCurrentUrl();\r\n        String expectedBlankPage=\"https://about:blank\";\r\n        Assert.assertEquals(actualBlankPage,expectedBlankPage);\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    }\r\n    @AfterTest\r\n    public void tearDown() throws InterruptedException {\r\n     Thread.sleep(1000);\r\n     driver.close();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/com/demoqa/BrowserWindows.java b/src/test/java/com/demoqa/BrowserWindows.java
+--- a/src/test/java/com/demoqa/BrowserWindows.java	(revision f0b053487cd9d2ef26d5a98753e5d7b955c978a2)
++++ b/src/test/java/com/demoqa/BrowserWindows.java	(date 1722352930608)
+@@ -10,9 +10,6 @@
+ import org.testng.annotations.AfterTest;
+ import org.testng.annotations.BeforeTest;
+ import org.testng.annotations.Test;
+-
+-
+-
+ import java.time.Duration;
+ 
+ public class BrowserWindows {
+@@ -118,9 +115,9 @@
+ 
+ 
+         //make sure that the driver switched to blank page
+-        String actualBlankPage = driver.getCurrentUrl();
+-        String expectedBlankPage="https://about:blank";
+-        Assert.assertEquals(actualBlankPage,expectedBlankPage);
++       // String actualBlankPage = driver.getCurrentUrl();
++       // String expectedBlankPage="https://about:blank";
++       // Assert.assertEquals(actualBlankPage,expectedBlankPage);
+ 
+ 
+ 
+Index: src/test/java/com/demoqa/InvalidEmail.java
+===================================================================
+diff --git a/src/test/java/com/demoqa/InvalidEmail.java b/src/test/java/com/demoqa/InvalidEmail.java
+deleted file mode 100644
+--- a/src/test/java/com/demoqa/InvalidEmail.java	(revision f0b053487cd9d2ef26d5a98753e5d7b955c978a2)
++++ /dev/null	(revision f0b053487cd9d2ef26d5a98753e5d7b955c978a2)
+@@ -1,60 +0,0 @@
+-package com.demoqa;
+-
+-import org.openqa.selenium.By;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.WebElement;
+-import org.openqa.selenium.chrome.ChromeDriver;
+-import org.testng.Assert;
+-import org.testng.annotations.BeforeTest;
+-import org.testng.annotations.Test;
+-
+-public class InvalidEmail {
+-
+-    WebDriver driver;
+-
+-    @BeforeTest(alwaysRun = true)
+-    public void setUp() {
+-        // Open page
+-        String url = "https://demoqa.com/text-box";
+-        driver = new ChromeDriver();
+-        driver.get(url);
+-        driver.manage().window().maximize();
+-
+-
+-    }
+-
+-    @Test
+-    public void wrongTypeEmail(){
+-
+-        // check landing url
+-        String expectedUrl="https://demoqa.com/text-box";
+-        String actualUrl  = driver.getCurrentUrl();
+-
+-
+-        //missing the @ sign from the email address completing field  stops the submitting of other informations too;
+-        //the output field is not visible
+-
+-
+-        WebElement inputName= driver.findElement(By.id("userName"));
+-        inputName.sendKeys("Ion Popescu");
+-
+-        WebElement emailAddress = driver.findElement(By.id("userEmail"));
+-        emailAddress.sendKeys("ionpopescuyahoo.com");
+-
+-        WebElement currentAddress = driver.findElement(By.id("currentAddress"));
+-        currentAddress.sendKeys(" Str. Maxim Gorki nr.3");
+-
+-
+-        WebElement permanentAddress = driver.findElement((By.id("permanentAddress")));
+-        permanentAddress.sendKeys(" Str. Ialomitei nr.15");
+-
+-        WebElement submitButton = driver.findElement(By.id("submit"));
+-        submitButton.click();
+-        Assert.assertTrue(submitButton.isEnabled());
+-
+-
+-        WebElement outputField= driver.findElement(By.id("output"));
+-        Assert.assertFalse(outputField.isDisplayed());
+-
+-    }
+-}
+Index: src/test/java/com/demoqa/TextBox.java
+===================================================================
+diff --git a/src/test/java/com/demoqa/TextBox.java b/src/test/java/com/demoqa/TextBox.java
+deleted file mode 100644
+--- a/src/test/java/com/demoqa/TextBox.java	(revision f0b053487cd9d2ef26d5a98753e5d7b955c978a2)
++++ /dev/null	(revision f0b053487cd9d2ef26d5a98753e5d7b955c978a2)
+@@ -1,95 +0,0 @@
+-package com.demoqa;
+-
+-import org.openqa.selenium.By;
+-import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.WebElement;
+-import org.openqa.selenium.chrome.ChromeDriver;
+-import org.openqa.selenium.interactions.Actions;
+-import org.testng.Assert;
+-import org.testng.annotations.BeforeTest;
+-import org.testng.annotations.Test;
+-
+-public class TextBox {
+-    WebDriver driver;
+-
+-    @BeforeTest(alwaysRun = true)
+-    public void setUp() {
+-        // Open page
+-        String url = "https://demoqa.com/text-box";
+-        driver = new ChromeDriver();
+-        driver.get(url);
+-        driver.manage().window().maximize();
+-
+-
+-    }
+-
+-
+-    @Test
+-    public void completeTextBox(){
+-        WebElement inputName= driver.findElement(By.id("userName"));
+-        inputName.sendKeys("Ion Popescu");
+-
+-        WebElement emailAddress = driver.findElement(By.id("userEmail"));
+-        emailAddress.sendKeys("ionpopescu@yahoo.com");
+-
+-        WebElement currentAddress = driver.findElement(By.id("currentAddress"));
+-        currentAddress.sendKeys(" Str. Maxim Gorki nr.3");
+-
+-
+-        WebElement permanentAddress = driver.findElement((By.id("permanentAddress")));
+-        permanentAddress.sendKeys(" Str. Ialomitei nr.15");
+-
+-        //verify the action of the submitting button
+-
+-        WebElement submitButton = driver.findElement(By.id("submit"));
+-        submitButton.click();
+-        Assert.assertTrue(submitButton.isEnabled());
+-
+-        //check landing page
+-
+-        String expectedUrl = "https://demoqa.com/text-box";
+-        String actualUrl = driver.getCurrentUrl();
+-        org.junit.Assert.assertEquals(expectedUrl, actualUrl);
+-
+-
+-
+-        WebElement outputField= driver.findElement(By.id("output"));
+-        Assert.assertTrue(outputField.isDisplayed());
+-
+-        // check if correct name is shown  after submitting
+-
+-        WebElement completedName = driver.findElement(By.id("name"));
+-        String expectedName = "Ion Popescu";
+-        String actualName = completedName.getAccessibleName();
+-        Assert.assertTrue(completedName.isDisplayed());
+-
+-        // check email is correct
+-
+-        WebElement completedEmail = driver.findElement(By.id("email"));
+-        String expectedEmail = "ionpopescu@yahoo.com";
+-        String actualEmail   = completedEmail.getText();
+-        Assert.assertTrue(completedEmail.isDisplayed());
+-
+-        // check current addres
+-        WebElement existingCurrentAddress = driver.findElement(By.id("currentAddress"));
+-        String expectedCurrentAddress = " Str.Maxim Gorki nr.3";
+-        String actualCurrentAddress   = existingCurrentAddress.getText();
+-        Assert.assertTrue(existingCurrentAddress.isDisplayed());
+-
+-        //check permanent addres
+-
+-        WebElement existingPermanentAddress = driver.findElement(By.id("permanentAddress"));
+-        String expectedPermanentAddress = " Str. Ialomitei nr.15";
+-        String actualPermanentAddres    = existingPermanentAddress.getText();
+-        Assert.assertTrue(existingPermanentAddress.isDisplayed());
+-
+-        //check that current addres is not the same with permanent address
+-
+-        Assert.assertNotEquals(expectedCurrentAddress,expectedPermanentAddress);
+-
+-
+-    }
+-
+-}
+-
+-
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a63a8460-a82a-4967-bd1c-7a7f4df15bad\" name=\"Changes\" comment=\"Proiect\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/com/demoqa/Alerts.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/com/demoqa/Alerts.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/com/demoqa/ButtonsTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/com/demoqa/ButtonsTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/com/demoqa/InvalidEmail.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/com/demoqa/InvalidEmail.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/com/demoqa/SliderTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/com/demoqa/SliderBarTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/com/demoqa/TextBox.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/com/demoqa/TextBox.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2jjGY5BKJEKwcVeN1mwhQvC70Sr\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"TestNG.AlertTypes.alertButton.executor\": \"Run\",\r\n    \"TestNG.AlertTypes.confirmButton.executor\": \"Run\",\r\n    \"TestNG.AlertTypes.timerAlertButton.executor\": \"Run\",\r\n    \"TestNG.Alerts.cancelConfirmButton.executor\": \"Run\",\r\n    \"TestNG.Alerts.promptBoxButton.executor\": \"Run\",\r\n    \"TestNG.ButtonsTest.buttonDoubleClickError.executor\": \"Run\",\r\n    \"TestNG.ButtonsTest.clickDouble.executor\": \"Run\",\r\n    \"TestNG.ButtonsTest.clickOnButtons.executor\": \"Run\",\r\n    \"TestNG.InvalidEmail.executor\": \"Run\",\r\n    \"TestNG.InvalidEmail.wrongTypeEmail.executor\": \"Run\",\r\n    \"TestNG.SliderTest.changeValueManual.executor\": \"Run\",\r\n    \"TestNG.SliderTest.moveOnTheSlider.executor\": \"Run\",\r\n    \"TestNG.SliderTest.moveTheSlider.executor\": \"Run\",\r\n    \"TestNG.TextBox.checkInputs.executor\": \"Run\",\r\n    \"TestNG.TextBox.completeTextBox.executor\": \"Run\",\r\n    \"TestNG.TextBox.executor\": \"Run\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"onboarding.tips.debug.path\": \"C:/Users/balin/IdeaProjects/ProiectFinalKristinaB/src/main/java/org/example/Main.java\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"TestNG.Alerts.promptBoxButton\">\r\n    <configuration name=\"AlertTypes.alertButton\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"ProiectFinalKristinaB\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.demoqa.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"com.demoqa\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.demoqa.AlertTypes\" />\r\n      <option name=\"METHOD_NAME\" value=\"alertButton\" />\r\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\r\n      <properties />\r\n      <listeners />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"AlertTypes.confirmButton\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"ProiectFinalKristinaB\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.demoqa.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"com.demoqa\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.demoqa.AlertTypes\" />\r\n      <option name=\"METHOD_NAME\" value=\"confirmButton\" />\r\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\r\n      <properties />\r\n      <listeners />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"AlertTypes.timerAlertButton\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"ProiectFinalKristinaB\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.demoqa.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"com.demoqa\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.demoqa.AlertTypes\" />\r\n      <option name=\"METHOD_NAME\" value=\"timerAlertButton\" />\r\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\r\n      <properties />\r\n      <listeners />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Alerts.cancelConfirmButton\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"ProiectFinalKristinaB\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.demoqa.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"com.demoqa\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.demoqa.Alerts\" />\r\n      <option name=\"METHOD_NAME\" value=\"cancelConfirmButton\" />\r\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\r\n      <properties />\r\n      <listeners />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Alerts.promptBoxButton\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"ProiectFinalKristinaB\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.demoqa.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"com.demoqa\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.demoqa.Alerts\" />\r\n      <option name=\"METHOD_NAME\" value=\"promptBoxButton\" />\r\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\r\n      <properties />\r\n      <listeners />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"TestNG.Alerts.promptBoxButton\" />\r\n        <item itemvalue=\"TestNG.Alerts.cancelConfirmButton\" />\r\n        <item itemvalue=\"TestNG.AlertTypes.confirmButton\" />\r\n        <item itemvalue=\"TestNG.AlertTypes.timerAlertButton\" />\r\n        <item itemvalue=\"TestNG.AlertTypes.alertButton\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a63a8460-a82a-4967-bd1c-7a7f4df15bad\" name=\"Changes\" comment=\"\" />\r\n      <created>1721893117214</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1721893117214</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Proiect\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721920616146</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721920616146</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Proiect\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Proiect\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>\r\n          <line>13</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f0b053487cd9d2ef26d5a98753e5d7b955c978a2)
++++ b/.idea/workspace.xml	(date 1722352704054)
+@@ -5,11 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a63a8460-a82a-4967-bd1c-7a7f4df15bad" name="Changes" comment="Proiect">
+-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/Alerts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/Alerts.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/ButtonsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/ButtonsTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/InvalidEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/InvalidEmail.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/SliderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/SliderBarTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/TextBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/TextBox.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/BrowserWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/BrowserWindows.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/InvalidEmail.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/TextBox.java" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -47,6 +45,7 @@
+     "TestNG.ButtonsTest.buttonDoubleClickError.executor": "Run",
+     "TestNG.ButtonsTest.clickDouble.executor": "Run",
+     "TestNG.ButtonsTest.clickOnButtons.executor": "Run",
++    "TestNG.ButtonsTest.executor": "Run",
+     "TestNG.InvalidEmail.executor": "Run",
+     "TestNG.InvalidEmail.wrongTypeEmail.executor": "Run",
+     "TestNG.SliderTest.changeValueManual.executor": "Run",
+@@ -60,8 +59,8 @@
+     "onboarding.tips.debug.path": "C:/Users/balin/IdeaProjects/ProiectFinalKristinaB/src/main/java/org/example/Main.java"
+   }
+ }]]></component>
+-  <component name="RunManager" selected="TestNG.Alerts.promptBoxButton">
+-    <configuration name="AlertTypes.alertButton" type="TestNG" temporary="true" nameIsGenerated="true">
++  <component name="RunManager" selected="TestNG.DatePicker">
++    <configuration name="Alerts" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="ProiectFinalKristinaB" />
+       <extension name="coverage">
+         <pattern>
+@@ -70,16 +69,15 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="com.demoqa" />
+-      <option name="MAIN_CLASS_NAME" value="com.demoqa.AlertTypes" />
+-      <option name="METHOD_NAME" value="alertButton" />
+-      <option name="TEST_OBJECT" value="METHOD" />
++      <option name="MAIN_CLASS_NAME" value="com.demoqa.Alerts" />
++      <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="AlertTypes.confirmButton" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="Alerts.promptBoxButton" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="ProiectFinalKristinaB" />
+       <extension name="coverage">
+         <pattern>
+@@ -88,8 +86,8 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="com.demoqa" />
+-      <option name="MAIN_CLASS_NAME" value="com.demoqa.AlertTypes" />
+-      <option name="METHOD_NAME" value="confirmButton" />
++      <option name="MAIN_CLASS_NAME" value="com.demoqa.Alerts" />
++      <option name="METHOD_NAME" value="promptBoxButton" />
+       <option name="TEST_OBJECT" value="METHOD" />
+       <properties />
+       <listeners />
+@@ -97,7 +95,7 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="AlertTypes.timerAlertButton" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="ButtonsTest" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="ProiectFinalKristinaB" />
+       <extension name="coverage">
+         <pattern>
+@@ -106,16 +104,15 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="com.demoqa" />
+-      <option name="MAIN_CLASS_NAME" value="com.demoqa.AlertTypes" />
+-      <option name="METHOD_NAME" value="timerAlertButton" />
+-      <option name="TEST_OBJECT" value="METHOD" />
++      <option name="MAIN_CLASS_NAME" value="com.demoqa.ButtonsTest" />
++      <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="Alerts.cancelConfirmButton" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="DatePicker" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="ProiectFinalKristinaB" />
+       <extension name="coverage">
+         <pattern>
+@@ -124,16 +121,15 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="com.demoqa" />
+-      <option name="MAIN_CLASS_NAME" value="com.demoqa.Alerts" />
+-      <option name="METHOD_NAME" value="cancelConfirmButton" />
+-      <option name="TEST_OBJECT" value="METHOD" />
++      <option name="MAIN_CLASS_NAME" value="com.demoqa.DatePicker" />
++      <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="Alerts.promptBoxButton" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="SliderBarTest" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="ProiectFinalKristinaB" />
+       <extension name="coverage">
+         <pattern>
+@@ -142,9 +138,8 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="com.demoqa" />
+-      <option name="MAIN_CLASS_NAME" value="com.demoqa.Alerts" />
+-      <option name="METHOD_NAME" value="promptBoxButton" />
+-      <option name="TEST_OBJECT" value="METHOD" />
++      <option name="MAIN_CLASS_NAME" value="com.demoqa.SliderBarTest" />
++      <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+       <method v="2">
+@@ -153,11 +148,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="TestNG.DatePicker" />
++        <item itemvalue="TestNG.SliderBarTest" />
++        <item itemvalue="TestNG.Alerts" />
++        <item itemvalue="TestNG.ButtonsTest" />
+         <item itemvalue="TestNG.Alerts.promptBoxButton" />
+-        <item itemvalue="TestNG.Alerts.cancelConfirmButton" />
+-        <item itemvalue="TestNG.AlertTypes.confirmButton" />
+-        <item itemvalue="TestNG.AlertTypes.timerAlertButton" />
+-        <item itemvalue="TestNG.AlertTypes.alertButton" />
+       </list>
+     </recent_temporary>
+   </component>

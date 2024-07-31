@@ -54,7 +54,7 @@ public class SliderBarTest {
     }
 
        @Test
-    public void changeValueManual(){
+    public void changeValueManually(){
 
         // check if we can change manually the slider's value
 
@@ -69,7 +69,7 @@ public class SliderBarTest {
 
        }
 
-       @AfterTest
+       @AfterTest(alwaysRun = true)
     public void tearDown() throws InterruptedException {
         Thread.sleep(3000);
         driver.close();

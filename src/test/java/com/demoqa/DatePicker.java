@@ -91,7 +91,7 @@ public class DatePicker {
     }
 
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
         driver.close();

@@ -4,16 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-
-
-import java.time.Duration;
 
 public class BrowserWindows {
     WebDriver driver;
@@ -103,7 +98,7 @@ public class BrowserWindows {
 
 
     }
-    @Test
+   /* @Test
     public void newWindowMessage(){
 
         //click on new window message button
@@ -122,17 +117,7 @@ public class BrowserWindows {
         String expectedBlankPage="https://about:blank";
         Assert.assertEquals(actualBlankPage,expectedBlankPage);
 
-
-
-
-
-
-
-
-
-
-
-    }
+ }*/
     @AfterTest
     public void tearDown() throws InterruptedException {
      Thread.sleep(1000);

@@ -130,7 +130,7 @@ public class ButtonsTest {
 
 
     }
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void tearDown() throws InterruptedException {
         Thread.sleep(6000);
         driver.close();
