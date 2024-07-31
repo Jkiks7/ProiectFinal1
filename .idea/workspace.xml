@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="168dac2d-5bd7-4de1-8598-a5cd4d8005c2" name="Changes" comment="Proiect">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/BrowserWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/BrowserWindows.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/InvalidEmail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/TextBox.java" beforeDir="false" />
-    </list>
+    <list default="true" id="168dac2d-5bd7-4de1-8598-a5cd4d8005c2" name="Changes" comment="Proiect" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
@@ -21,7 +19,9 @@
     "TestNG.Alerts.executor": "Run",
     "TestNG.ButtonsTest.executor": "Run",
     "TestNG.DatePicker.executor": "Run",
-    "TestNG.SliderBarTest.executor": "Run"
+    "TestNG.SliderBarTest.executor": "Run",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/balin/IdeaProjects/ProiectFinalKristinaB"
   }
 }]]></component>
   <component name="RunManager" selected="TestNG.DatePicker">
