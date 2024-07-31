@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="168dac2d-5bd7-4de1-8598-a5cd4d8005c2" name="Changes" comment="Proiect" />
+    <list default="true" id="168dac2d-5bd7-4de1-8598-a5cd4d8005c2" name="Changes" comment="Proiect">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/BrowserWindows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/BrowserWindows.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/demoqa/ButtonsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demoqa/ButtonsTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +20,9 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "TestNG.Alerts.executor": "Run",
+    "TestNG.BrowserWindows.executor": "Run",
     "TestNG.ButtonsTest.executor": "Run",
     "TestNG.DatePicker.executor": "Run",
     "TestNG.SliderBarTest.executor": "Run",
@@ -24,7 +30,7 @@
     "last_opened_file_path": "C:/Users/balin/IdeaProjects/ProiectFinalKristinaB"
   }
 }]]></component>
-  <component name="RunManager" selected="TestNG.DatePicker">
+  <component name="RunManager" selected="TestNG.BrowserWindows">
     <configuration name="Alerts" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="ProiectFinalKristinaB" />
       <extension name="coverage">
@@ -35,6 +41,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.demoqa" />
       <option name="MAIN_CLASS_NAME" value="com.demoqa.Alerts" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BrowserWindows" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="ProiectFinalKristinaB" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.demoqa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.demoqa" />
+      <option name="MAIN_CLASS_NAME" value="com.demoqa.BrowserWindows" />
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
@@ -95,14 +118,32 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.BrowserWindows" />
+        <item itemvalue="TestNG.ButtonsTest" />
         <item itemvalue="TestNG.DatePicker" />
         <item itemvalue="TestNG.Alerts" />
-        <item itemvalue="TestNG.ButtonsTest" />
         <item itemvalue="TestNG.SliderBarTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Proiect">
+      <option name="closed" value="true" />
+      <created>1722445698277</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722445698277</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Proiect">
+      <option name="closed" value="true" />
+      <created>1722445811270</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722445811270</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

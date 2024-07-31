@@ -55,7 +55,7 @@ public class ButtonsTest {
 
         Actions clickRight = new Actions(driver);
 
-        clickRight.contextClick(driver.findElement(By.id("rightClickBtn"))).perform();
+        clickRight.contextClick(rightClickButton).perform();
         Thread.sleep(2000);
 
         //CLICK ME

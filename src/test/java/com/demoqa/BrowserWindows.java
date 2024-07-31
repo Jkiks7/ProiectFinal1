@@ -98,26 +98,7 @@ public class BrowserWindows {
 
 
     }
-   /* @Test
-    public void newWindowMessage(){
 
-        //click on new window message button
-        WebElement newWindowMessage= driver.findElement(By.id("messageWindowButton"));
-        Wait<WebDriver> wait =new WebDriverWait(driver, Duration.ofSeconds(20));
-        newWindowMessage.click();
-
-        Object[] windowHandles=driver.getWindowHandles().toArray();
-        driver.switchTo().window((String) windowHandles[1]);
-
-        Wait<WebDriver> wait1 =new WebDriverWait(driver, Duration.ofSeconds(20));
-
-
-        //make sure that the driver switched to blank page
-        String actualBlankPage = driver.getCurrentUrl();
-        String expectedBlankPage="https://about:blank";
-        Assert.assertEquals(actualBlankPage,expectedBlankPage);
-
- }*/
     @AfterTest
     public void tearDown() throws InterruptedException {
      Thread.sleep(1000);
